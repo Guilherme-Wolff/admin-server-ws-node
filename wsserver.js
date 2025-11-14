@@ -60,7 +60,7 @@ class RemoteFileManagerServer {
     this.clients = new Map(); // File manager clients
     this.adminClients = new Map(); // Admin clients
     this.clientStates = new Map();
-    this.port = 3000;
+    this.port = 8080;
     this.CURRENT_PATH = '/storage/emulated/0';
 
     this.config = {

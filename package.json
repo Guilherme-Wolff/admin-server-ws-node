@@ -1,0 +1,19 @@
+{
+  "name": "admin-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node wsserver.js"
+  },
+  "dependencies": {
+    "chalk": "4",
+    "eventsource": "^4.0.0",
+    "node-fetch": "^3.3.2",
+    "ws": "^8.18.3"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

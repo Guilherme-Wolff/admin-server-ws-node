@@ -1,0 +1,14 @@
+# Login no Fly.io
+fly auth login
+
+# Inicializar o app (na pasta do seu projeto)
+fly launch
+
+# Ou se já tiver o fly.toml configurado:
+fly deploy
+
+# Verificar status
+fly status
+
+# Ver logs
+fly logs

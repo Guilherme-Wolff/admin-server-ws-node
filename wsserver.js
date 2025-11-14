@@ -1,5 +1,7 @@
 const WebSocket = require('ws');
 const http = require("http");
+const express = require('express');
+const { createServer } = require('http');
 const fs = require('fs');
 const path = require('path');
 const chalk = require('chalk');
@@ -100,9 +102,26 @@ class RemoteFileManagerServer {
   }
 
   startServer() {
-    const server = http.createServer((req, res) => {
-      res.writeHead(200, { "Content-Type": "text/plain" });
-      res.end("Servidor HTTP + WebSocket está rodando!\n");
+    const app = express();
+    const server = createServer(app);
+
+    app.get('/', (req, res) => {
+      res.json({
+        status: 'online',
+        service: 'Remote File Manager WebSocket Server',
+        clients: this.clients.size,
+        adminClients: this.adminClients.size,
+        timestamp: new Date().toISOString()
+      });
+    });
+
+    app.get('/health', (req, res) => {
+      res.status(200).json({
+        status: 'healthy',
+        clients: this.clients.size,
+        memory: process.memoryUsage(),
+        uptime: process.uptime()
+      });
     });
 
     this.wss = new WebSocket.Server({
